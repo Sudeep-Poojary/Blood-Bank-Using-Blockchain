@@ -13,7 +13,7 @@ if (typeof window.ethereum !== "undefined") {
 }
 
 // Contract Address and ABI (replace with your actual deployed contract address and ABI)
-const contractAddress = "0x8F7ba666D734F022E7C6adE11c94b4Dcf4834C7C";
+const contractAddress = "0xc533Ae39F8B57E38c362DD4740cC7Af768cC4e0e";
 const contractABI = [
   {
     inputs: [],
