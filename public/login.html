@@ -1,14 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Login</title>
-</head>
-<body>
-    <h1>User Login</h1>
-    <button onclick="redirectTo('patient_login.html')">Patient Login</button>
-    <button onclick="redirectTo('donor_login.html')">Donor Login</button>
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+      }
+
+      button {
+        padding: 15px 30px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 0 10px;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body
+    class="section hero"
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 5px;
+      background-image: url('./assets/images/hero-bg.png');
+    "
+  >
+    <h1 style="color: white" class="headline-md hero-title">User Login</h1>
+
+    <div style="display: flex">
+      <button
+        onclick="redirectTo('patient_login.html')"
+        class="btn has-before title-lg"
+      >
+        Patient Login
+      </button>
+      <button
+        onclick="redirectTo('donor_login.html')"
+        class="btn has-before title-lg"
+      >
+        Donor Login
+      </button>
+    </div>
+
     <script src="app.js"></script>
-</body>
+  </body>
 </html>

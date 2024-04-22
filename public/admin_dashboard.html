@@ -1,144 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blood Bank Management System - Admin Dashboard</title>
+    <link rel="stylesheet" href="./assets/css/index.css" />
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
 
-        h1 {
-            color: #3498db;
-            font-weight: bold;
-            font-size: 2.5em; /* Increase font size for emphasis */
-            margin-bottom: 20px; /* Add more space below the heading for clarity */
-            padding: 10px; /* Add padding for better readability */
-        }
+      h1 {
+        color: #3498db;
+        font-weight: bold;
+        font-size: 2.5em; /* Increase font size for emphasis */
+        margin-bottom: 20px; /* Add more space below the heading for clarity */
+        padding: 10px; /* Add padding for better readability */
+      }
 
-        p {
-            color: #ecf0f1; /* Slightly different color for variety */
-            font-size: 1.2em; /* Increase font size for emphasis */
-            margin-bottom: 20px; /* Add space below the paragraph */
-            padding: 10px; /* Add padding for better readability */
-        }
+      p {
+        color: #ecf0f1; /* Slightly different color for variety */
+        font-size: 1.2em; /* Increase font size for emphasis */
+        margin-bottom: 20px; /* Add space below the paragraph */
+        padding: 10px; /* Add padding for better readability */
+      }
 
-        #adminMessages,
-        #registeredUsers,
-        #BloodRequestsListForAdmin,
-        div {
-            margin: 20px;
-            padding: 20px;
-            background-color: rgb(241, 189, 189);
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(43, 42, 42, 0.1);
-        }
+      #adminMessages,
+      #registeredUsers,
+      #BloodRequestsListForAdmin,
+      div {
+        margin: 20px;
+        padding: 10px;
+        background-color: whitesmoke;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(43, 42, 42, 0.1);
+      }
 
-        button {
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
+      button {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
 
-        button:hover {
-            background-color: #fb2111;
-        }
+      button:hover {
+        background-color: #fb2111;
+      }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
 
-        li {
-            margin: 5px 0;
-        }
-        #donorsList img {
-            max-width: 100px; /* Adjust the maximum width as needed */
-            border-radius: 50%;
-            margin-bottom: 10px;
-        }
-        #registeredUsers {
-            display: flex;
-            flex-wrap: wrap;
-        }
+      li {
+        margin: 5px 0;
+      }
+      #donorsList img {
+        max-width: 100px; /* Adjust the maximum width as needed */
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+      #registeredUsers {
+        display: flex;
+        flex-wrap: wrap;
+      }
 
-        #donorsList {
-            flex: 1;
-            margin-right: 20px; /* Adjust margin as needed for spacing between columns */
-            background-color: #f3f2f2;
-        }
+      #donorsList {
+        flex: 1;
+        margin-right: 20px; /* Adjust margin as needed for spacing between columns */
+        background-color: #f3f2f2;
+      }
 
-        #donorsList img {
-            max-width: 100px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-        }
+      #donorsList img {
+        max-width: 100px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
 
-        #patientsList {
-            flex: 1;
-            color: #1f6fa5;
-            background-color: azure;
-        }
-        h3 {
-            color: rgb(120, 154, 250); /* Text color for the column headings */
-        }
+      #patientsList {
+        flex: 1;
+        color: #1f6fa5;
+        background-color: azure;
+      }
+      h3 {
+        color: var(--midnight-green); /* Text color for the column headings */
+      }
     </style>
-</head>
-<body>
-    <h1>Admin Dashboard</h1>
+  </head>
+  <body
+    class="section hero"
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-image: url('./assets/images/hero-bg.png');
+      padding: 0;
+      margin: 0;
+    "
+  >
+    <h1 style="color: white; padding: 10px; margin-bottom: 0px">
+      Admin Dashboard
+    </h1>
     <p>Welcome, Admin!</p>
 
-    <div id="adminMessages">
-        <h2>Admin Messages</h2>
-        <ul id="adminMessageList"></ul>
+    <div
+      id="adminMessages"
+      class="headline-sm hero-title"
+      style="
+        width: 80vw;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: var(--midnight-green);
+      "
+    >
+      <h2 style="padding-top: 10px; padding-bottom: 10px">Admin Messages</h2>
+      <ul id="adminMessageList"></ul>
     </div>
 
-    <div id="registeredUsers">
-        <h2>Registered Users</h2>
-            <div id="donorsList">
-            <h3>Registered Donors</h3>
-            <img src="imgs/registered.jpg" alt="Donor Image">
-            <ul id="donorsDetailsList"></ul>
-        </div>
-        <div id="patientsList">
-            <h3>Registered Patients</h3>
-            
-            <ul id="patientsDetailsList"></ul>
-        </div>
+    <div
+      id="registeredUsers"
+      style="
+        width: 80vw;
+        margin-bottom: 0px;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <h2>Registered Users</h2>
+      <div id="donorsList" style="background-color: var(--verdigris)">
+        <h3 style="color: white">Registered Donors</h3>
+        <!-- <img src="imgs/registered.jpg" alt="Donor Image" /> -->
+        <div id="donorsDetailsList"></div>
+      </div>
+      <div id="patientsList" style="background-color: var(--verdigris)">
+        <h3 style="color: white">Registered Patients</h3>
+        <div id="patientsDetailsList"></div>
+      </div>
     </div>
 
-    <div id="BloodRequestsListForAdmin">
-        <h3>Blood Requests Made By Patients</h3>
-        <ul id="bloodRequestsListAdmin"></ul>
+    <div
+      id="BloodRequestsListForAdmin"
+      style="width: 80vw; color: white"
+      class="padding:10px;"
+    >
+      <h2
+        class="headline-md hero-title"
+        style="width: 80vw; color: var(--midnight-green); font-size: larger"
+      >
+        Blood Requests Made By Patients
+      </h2>
+      <div
+        style="background-color: var(--verdigris)"
+        id="bloodRequestsListAdmin"
+      ></div>
     </div>
-    
-    <div>
-        <h2>Admin Actions</h2>
-        <button onclick="respondToRequest()">Respond to Requests</button>
-        <button onclick="grantUserPermission()">Grant User Permission</button>
-    </div>
+
+    <!-- <div
+      style="
+        width: 80vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      "
+    >
+      <h2 style="margin-left: 0px">Admin Actions</h2>
+      <button
+        class="btn has-before title-lg"
+        style="
+          background-color: var(--verdigris);
+          justify-content: center;
+          padding-left: 190px;
+          padding-right: 160px;
+          margin-left: 50px;
+        "
+        onclick="respondToRequest()"
+      >
+        Respond to Requests
+      </button>
+      <button
+        class="btn has-before title-lg"
+        style="
+          background-color: var(--verdigris);
+          justify-content: center;
+          padding-left: 190px;
+          padding-right: 160px;
+          margin-left: 40px;
+        "
+        onclick="grantUserPermission()"
+      >
+        Grant User Permission
+      </button>
+    </div> -->
 
     <script>
-        // Call the function when the window loads for patient_dashboard
-        window.onload = () => {
-            displayBloodRequests('bloodRequestsListAdmin');
-        };
+      // Call the function when the window loads for patient_dashboard
+      // window.onload = () => {
+      //   displayBloodRequests("bloodRequestsListAdmin");
+      // };
+
+      function getUserData(userType, key) {
+        const prefixedKey = userType + "_" + key; // Prefix key with user type
+        return localStorage.getItem(prefixedKey);
+      }
+
+      // Retrieve donor data from local storage
+      const storedDonorName = getUserData("donor", "email");
+
+      // Display donor data
+      const donorDataDiv = document.getElementById("donorsDetailsList");
+      donorDataDiv.innerHTML = `
+      <p style="color: var(--midnight-green); padding:0px; margin:8px" class="hero-title">Email: ${storedDonorName}</p>
+
+    `;
+
+      // Retrieve patient data from local storage
+      const storedPatientName = getUserData("patient", "email");
+
+      // Display patient data
+      const patientDataDiv = document.getElementById("patientsDetailsList");
+      patientDataDiv.innerHTML = `
+<p style="color: var(--midnight-green); padding:0px; margin:8px" class="hero-title">Email: ${storedPatientName}</p>
+
+`;
+
+      // Retrieve donor data from local storage
+      const storedRequestBloodType = getUserData("patient", "bloodType");
+      const storedRequestAmount = getUserData("patient", "requestAmount");
+      const storedRequestDate = getUserData("patient", "requestDate");
+
+      // Display donor data
+      const requestDataDiv = document.getElementById("bloodRequestsListAdmin");
+      requestDataDiv.innerHTML = `
+        <p style="color: white; padding:0px; margin:8px" class="hero-title">Email: ${storedPatientName}</p>
+        <p style="color: white; padding:0px; margin:8px" class="hero-title">Blood Type: ${storedRequestBloodType}</p>
+        <p style="color: white; padding:0px; margin:8px" class="hero-title">Blood Amount (in ml): ${storedRequestAmount}</p>
+        <p style="color: white; padding:0px; margin:8px" class="hero-title">Donation Date: ${storedRequestDate}</p>
+
+      `;
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>

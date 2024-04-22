@@ -1,21 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blood Bank Management System - Donor Login</title>
-    
-</head>
-<body>
-    <h1>Donor Login</h1>
-    <form id="donorLoginForm">
-        <label for="donorAddress">Donor Address:</label>
-        <input type="text" id="donorAddress" required>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blood Bank Management System - Patient Donar</title>
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
 
-        <button type="button" onclick="donorLogin()">Login</button>
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+      }
+
+      form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box; /* Ensure padding and border are included in width */
+      }
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box; /* Ensure padding and border are included in width */
+      }
+
+      button {
+        width: 100%;
+        padding: 15px 0;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body
+    class="section hero"
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 5px;
+      background-image: url('./assets/images/hero-bg.png');
+    "
+  >
+    <h1 style="color: white" class="headline-md hero-title">Donor Login</h1>
+    <form id="patientLoginForm" style="padding: 20px">
+      <label for="donorAddress">Donor Address:</label>
+      <input
+        style="border: 1px solid black"
+        type="password"
+        id="donorAddress"
+        required
+      />
+
+      <label for="donorEmail">Donor Email:</label>
+      <input
+        style="border: 1px solid black; border-radius: 4px; padding: 10px"
+        type="email"
+        id="donorEmail"
+        required
+      />
+
+      <label for="donorPassword" style="padding-top: 20px"
+        >Donor Password:</label
+      >
+      <input
+        style="border: 1px solid black"
+        type="password"
+        id="donorPassword"
+        required
+      />
+
+      <button
+        class="btn has-before title-lg"
+        style="background-color: var(--midnight-green); justify-content: center"
+        type="button"
+        id="loginButton"
+        onclick="redirectTo('donor_dashboard.html')"
+      >
+        Login
+      </button>
     </form>
+
+    <script>
+      // Function to save user data to local storage with a specific prefix
+      function saveUserData(userType, key, value) {
+        const prefixedKey = userType + "_" + key; // Prefix key with user type
+        localStorage.setItem(prefixedKey, value);
+      }
+
+      // Function to handle form submission and store data in local storage
+      document
+        .getElementById("loginButton")
+        .addEventListener("click", function () {
+          // Get user input values
+          const address = document.getElementById("donorAddress").value;
+          const email = document.getElementById("donorEmail").value;
+          const password = document.getElementById("donorPassword").value;
+
+          // Save user data to local storage
+          saveUserData("donor", "address", address);
+          saveUserData("donor", "email", email);
+          saveUserData("donor", "password", password);
+
+          // Show login success message (for demonstration purposes)
+          alert("donor data saved successfully!");
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>

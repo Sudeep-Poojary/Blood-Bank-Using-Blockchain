@@ -1,83 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blood Bank Management System - Donor Dashboard</title>
+    <link rel="stylesheet" href="./assets/css/index.css" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background-color: #f4f4f4;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color: #f4f4f4;
+      }
 
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
 
-        #donorActions {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 10px;
-            text-align: center;
-        }
+      #donorActions {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 10px;
+        text-align: center;
+      }
 
-        h2 {
-            color: #333;
-        }
+      h2 {
+        color: var(--midnight-green);
+      }
 
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+      button {
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
 
-        button:hover {
-            background-color: rgb(160, 69, 96);
-        }
+      button:hover {
+        background-color: rgb(160, 69, 96);
+      }
     </style>
-</head>
-<body>
-    <h1>Welcome, Donor!</h1>
+  </head>
+  <body
+    class="section hero"
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 5px;
+      background-image: url('./assets/images/hero-bg.png');
+    "
+  >
+    <h1 style="color: white" class="headline-md hero-title">Welcome, Donor!</h1>
 
-    <div id="donorActions">
-        <h2>Donor Actions</h2>
-        <button onclick="donateBlood()">Donate Blood</button>
+    <div id="donorActions" style="padding: 40px">
+      <h2 style="padding-bottom: 30px">Donor Actions</h2>
+      <button
+        id="donateButton"
+        class="btn has-before title-lg"
+        style="background-color: var(--verdigris); justify-content: center"
+        onclick="requestBlood()"
+      >
+        Donate Blood
+      </button>
     </div>
     <div id="donationDetails">
-        <h2>Donation Details</h2>
-        <ul id="donationDetailsList"></ul>
+      <h2 style="color: white" class="headline-sm hero-title">
+        Donation Details
+      </h2>
+      <ul id="donationDetailsList"></ul>
     </div>
-    
-    <div id="donationDetails">
-        <h2>Total Blood Donated</h2>
-        <p id="totalDonated"></p>
+
+    <div id="donorData">
+      <p style="color: white" class="headline-sm hero-title"></p>
     </div>
+
+    <!-- <div id="donationDetails">
+      <h2 style="color: white" class="headline-sm hero-title">
+        Total Blood Donated
+      </h2>
+      <p id="totalDonated"></p>
+    </div> -->
 
     <script>
-        window.onload = function () {
-            // Display stored donation details from local storage
-            displayStoredDonationDetails();
-        };
+      // Function to save user data to local storage with a specific prefix
+      function saveUserData(userType, key, value) {
+        const prefixedKey = userType + "_" + key; // Prefix key with user type
+        localStorage.setItem(prefixedKey, value);
+      }
+
+      // Function to handle button click event and open popup for donation details
+      document
+        .getElementById("donateButton")
+        .addEventListener("click", function () {
+          // Open a window popup with input fields for donation details
+          const bloodType = prompt("Enter blood type (A, B, AB, O):");
+          const donationDate = prompt("Enter donation date (YYYY-MM-DD):");
+          const donationAmount = prompt("Enter donation amount (in ml):");
+
+          // Check if input is not null and save to local storage
+          if (
+            donationDate !== null &&
+            donationAmount !== null &&
+            bloodType !== null
+          ) {
+            saveUserData("donor", "bloodType", bloodType);
+            saveUserData("donor", "donationDate", donationDate);
+            saveUserData("donor", "donationAmount", donationAmount);
+
+            alert("Donation details saved successfully!");
+          }
+        });
+
+      // Function to retrieve user data from local storage with a specific prefix
+      function getUserData(userType, key) {
+        const prefixedKey = userType + "_" + key; // Prefix key with user type
+        return localStorage.getItem(prefixedKey);
+      }
+
+      // Retrieve donor data from local storage 
+      const storedDonorName = getUserData("donor", "email");
+      const storedDonorBloodType = getUserData("donor", "bloodType");
+      const storedAmount = getUserData("donor", "donationAmount");
+      const storedDate = getUserData("donor", "donationDate");
+
+      // Display donor data
+      const donorDataDiv = document.getElementById("donorData");
+      donorDataDiv.innerHTML = `
+      <p style="color: white; padding:0px; margin:8px" class="hero-title">Email: ${storedDonorName}</p>
+      <p style="color: white; padding:0px; margin:8px" class="hero-title">Blood Type: ${storedDonorBloodType}</p>
+      <p style="color: white; padding:0px; margin:8px" class="hero-title">Blood Amount (in ml): ${storedAmount}</p>
+      <p style="color: white; padding:0px; margin:8px" class="hero-title">Donation Date: ${storedDate}</p>
+
+    `;
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>

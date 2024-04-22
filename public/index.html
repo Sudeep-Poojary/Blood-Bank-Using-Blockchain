@@ -1,66 +1,1055 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blood Bank BlochChain System</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DocLab - Blood Bank</title>
+
+    <!-- 
+    - favicon
+  -->
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+
+    <!-- 
+  - google font link
+-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 
+  - custom css link
+-->
+    <link rel="stylesheet" href="./assets/css/index.css" />
+
+    <!-- 
+  - preload images
+-->
+    <link rel="preload" as="image" href="./assets/images/hero-banner.png" />
+    <link rel="preload" as="image" href="./assets/images/hero-bg.png" />
+
     <!-- Include Web3 library -->
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-image: url('imgs/image.png'); 
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            height: 100vh; /* Ensure the background covers the entire viewport height */
-            margin: 0; /* Remove default margin to prevent unwanted spacing */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white; /* Set text color to white for better visibility */
-        }
+    <script
+      src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"
+      integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk="
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script> -->
+    <!-- <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-image: url("imgs/image.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100vh; /* Ensure the background covers the entire viewport height */
+        margin: 0; /* Remove default margin to prevent unwanted spacing */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white; /* Set text color to white for better visibility */
+      }
 
-        h1 {
-            color: #333;
-        }
+      h1 {
+        color: #333;
+      }
 
-        button {
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
 
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<body>
-    <h1>Blood Bank BlocKchain System</h1>
-    <button onclick="redirectTo('register.html')">Register Donor/Patient</button>
-    <button onclick="redirectTo('admin.html')">Admin Login</button>
-    <button onclick="redirectTo('login.html')">User Login</button>
-    <button onclick="redirectTo('donated_blood.html')">check available donated_blood</button>
-    
+      button:hover {
+        background-color: #45a049;
+      }
+    </style> -->
+  </head>
+  <body id="top">
+    <!-- 
+    - #PRELOADER
+  -->
+
+    <div class="preloader" data-preloader>
+      <div class="circle"></div>
+    </div>
+
+    <!-- 
+  - #HEADER
+-->
+
+    <header class="header" data-header>
+      <div class="container">
+        <a href="#" class="logo">
+          <img
+            src="./assets/images/logo.svg"
+            width="136"
+            height="46"
+            alt="Doclab home"
+          />
+        </a>
+
+        <nav class="navbar" data-navbar>
+          <div class="navbar-top">
+            <a href="#" class="logo">
+              <img
+                src="./assets/images/logo.svg"
+                width="136"
+                height="46"
+                alt="Doclab home"
+              />
+            </a>
+
+            <button
+              class="nav-close-btn"
+              aria-label="clsoe menu"
+              data-nav-toggler
+            >
+              <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </div>
+
+          <ul class="navbar-list">
+            <!-- <li class="navbar-item">
+          <a href="#" class="navbar-link title-md">Home</a>
+        </li>
+
+        <li class="navbar-item">
+          <a href="#" class="navbar-link title-md">Doctors</a>
+        </li>
+
+        <li class="navbar-item">
+          <a href="#" class="navbar-link title-md">Services</a>
+        </li>
+
+        <li class="navbar-item">
+          <a href="#" class="navbar-link title-md">Blog</a>
+        </li>
+
+        <li class="navbar-item">
+          <a href="#" class="navbar-link title-md">Contact</a>
+        </li> -->
+          </ul>
+
+          <ul class="social-list">
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-pinterest"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-youtube"></ion-icon>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <a href="register.html" class="btn has-before title-md">Register</a>
+
+        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <a href="admin.html" class="btn has-before title-md">Admin Login</a>
+
+        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <a href="login.html" class="btn has-before title-md">User Login</a>
+
+        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <a href="donated_blood.html" class="btn has-before title-md"
+          >Check Availablility</a
+        >
+
+        <div class="overlay" data-nav-toggler data-overlay></div>
+      </div>
+    </header>
+
+    <main>
+      <article>
+        <!-- 
+      - #HERO
+    -->
+
+        <section
+          class="section hero"
+          style="background-image: url('./assets/images/hero-bg.png')"
+          aria-label="home"
+        >
+          <div class="container">
+            <div class="hero-content">
+              <p class="hero-subtitle has-before" data-reveal="left">
+                Welcome To Doclab
+              </p>
+
+              <h1 class="headline-lg hero-title" data-reveal="left">
+                Donate, Manage, Heal.<br />
+                <!-- Doctor. -->
+              </h1>
+
+              <div class="hero-card" data-reveal="left">
+                <p class="title-lg card-text">Check Blood Availablility</p>
+
+                <div class="wrapper">
+                  <div class="input-wrapper title-lg">
+                    <input
+                      type="text"
+                      name="location"
+                      placeholder="Click Here ⇨"
+                      class="input-field"
+                    />
+
+                    <ion-icon name="location"></ion-icon>
+                  </div>
+
+                  <button
+                    class="btn has-before"
+                    onclick="redirectTo('donated_blood.html')"
+                  >
+                    <ion-icon name="search"></ion-icon>
+
+                    <span class="span title-md">Check</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <figure class="hero-banner" data-reveal="right">
+              <img
+                src="./assets/images/hero-banner.png"
+                width="590"
+                height="517"
+                loading="eager"
+                alt="hero banner"
+                class="w-100"
+              />
+            </figure>
+          </div>
+        </section>
+
+        <!-- 
+      - #SERVICE
+    -->
+
+        <section class="service" aria-label="service">
+          <div class="container">
+            <ul class="service-list">
+              <li>
+                <div class="service-card" data-reveal="bottom">
+                  <div class="card-icon">
+                    <img
+                      src="./assets/images/icon-1.png"
+                      width="71"
+                      height="71"
+                      loading="lazy"
+                      alt="icon"
+                    />
+                  </div>
+
+                  <h3 class="headline-sm card-title">
+                    <a href="#">Who can donate?</a>
+                  </h3>
+
+                  <p class="card-text">
+                    You need to be 18-65 years old, weight 45kg or more and be
+                    fit and healthy.
+                  </p>
+
+                  <!-- <button
+                    class="btn-circle"
+                    aria-label="read more about psychiatry"
+                  >
+                    <ion-icon
+                      name="arrow-forward"
+                      aria-hidden="true"
+                    ></ion-icon>
+                  </button> -->
+                </div>
+              </li>
+
+              <li>
+                <div class="service-card" data-reveal="bottom">
+                  <div class="card-icon">
+                    <img
+                      src="./assets/images/icon-2.png"
+                      width="71"
+                      height="71"
+                      loading="lazy"
+                      alt="icon"
+                    />
+                  </div>
+
+                  <h3 class="headline-sm card-title">
+                    <a href="#">Lasts For?</a>
+                  </h3>
+
+                  <p class="card-text">
+                    Red cells can be stored for 42 days at 2-6 degree celsius.
+                  </p>
+
+                  <!-- <button
+                    class="btn-circle"
+                    aria-label="read more about Gynecology"
+                  >
+                    <ion-icon
+                      name="arrow-forward"
+                      aria-hidden="true"
+                    ></ion-icon>
+                  </button> -->
+                </div>
+              </li>
+
+              <li>
+                <div class="service-card" data-reveal="bottom">
+                  <div class="card-icon">
+                    <img
+                      src="./assets/images/icon-3.png"
+                      width="71"
+                      height="71"
+                      loading="lazy"
+                      alt="icon"
+                    />
+                  </div>
+
+                  <h3 class="headline-sm card-title">
+                    <a href="#">Donation Process?</a>
+                  </h3>
+
+                  <p class="card-text">
+                    15-30 minutes to donate including the pre-donation check-up.
+                  </p>
+
+                  <!-- <button
+                    class="btn-circle"
+                    aria-label="read more about Pulmonology"
+                  >
+                    <ion-icon
+                      name="arrow-forward"
+                      aria-hidden="true"
+                    ></ion-icon>
+                  </button> -->
+                </div>
+              </li>
+
+              <li>
+                <div class="service-card" data-reveal="bottom">
+                  <div class="card-icon">
+                    <img
+                      src="./assets/images/icon-4.png"
+                      width="71"
+                      height="71"
+                      loading="lazy"
+                      alt="icon"
+                    />
+                  </div>
+
+                  <h3 class="headline-sm card-title">
+                    <a href="#">How often can I donate?</a>
+                  </h3>
+
+                  <p class="card-text">
+                    Male donors can donate again after 90 days and female donors
+                    can donate again after 120 days.
+                  </p>
+
+                  <!-- <button
+                    class="btn-circle"
+                    aria-label="read more about Orthopedics"
+                  >
+                    <ion-icon
+                      name="arrow-forward"
+                      aria-hidden="true"
+                    ></ion-icon>
+                  </button> -->
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 
+      - #ABOUT
+    -->
+
+        <section class="section about" aria-labelledby="about-label">
+          <div class="container">
+            <div class="about-content">
+              <p
+                class="section-subtitle title-lg has-after"
+                id="about-label"
+                data-reveal="left"
+              >
+                About Us
+              </p>
+
+              <h2 class="headline-md" data-reveal="left">Our Services</h2>
+
+              <p class="section-text" data-reveal="left">
+                We offer a comprehensive suite of services designed to
+                streamline blood donation and distribution processes while
+                ensuring safe and efficient access to blood transfusions for
+                patients in need.
+              </p>
+
+              <ul class="tab-list" data-reveal="left">
+                <li>
+                  <button
+                    style="
+                      background-color: var(--verdigris);
+                      justify-content: center;
+                    "
+                    class="btn active has-before title-md"
+                    onclick="redirectTo('admin.html')"
+                  >
+                    Admin
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style="
+                      background-color: var(--verdigris);
+                      justify-content: center;
+                    "
+                    class="btn active has-before title-md"
+                    onclick="redirectTo('donor_login.html')"
+                  >
+                    Donor
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style="
+                      background-color: var(--verdigris);
+                      justify-content: center;
+                    "
+                    class="btn active has-before title-md"
+                    onclick="redirectTo('patient_login.html')"
+                  >
+                    Patient
+                  </button>
+                </li>
+              </ul>
+
+              <p class="tab-text" data-reveal="left">
+                Securely track blood donations, transfusions, and inventory with
+                blockchain technology for enhanced transparency
+              </p>
+
+              <div class="wrapper">
+                <ul class="about-list">
+                  <li class="about-item" data-reveal="left">
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+
+                    <span class="span">Blood Donation Drives</span>
+                  </li>
+
+                  <li class="about-item" data-reveal="left">
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+
+                    <span class="span"
+                      >Registration and Profile Management</span
+                    >
+                  </li>
+
+                  <li class="about-item" data-reveal="left">
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+
+                    <span class="span">Appointment Scheduling</span>
+                  </li>
+
+                  <li class="about-item" data-reveal="left">
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+
+                    <span class="span"
+                      >Immutable and Secure Patient Record</span
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <figure class="about-banner" data-reveal="right">
+              <img
+                src="./assets/images/about-banner.png"
+                width="554"
+                height="678"
+                loading="lazy"
+                alt="about banner"
+                class="w-100"
+              />
+            </figure>
+          </div>
+        </section>
+
+        <!-- 
+      - #LISTING
+    -->
+
+        <section class="section listing" aria-labelledby="listing-label">
+          <div class="container">
+            <ul class="grid-list">
+              <li>
+                <p
+                  class="section-subtitle title-lg"
+                  id="listing-label"
+                  data-reveal="left"
+                >
+                  Blood Basics
+                </p>
+
+                <h2 class="headline-md" data-reveal="left">
+                  Blood Composition
+                </h2>
+              </li>
+
+              <li>
+                <div class="listing-card" data-reveal="bottom">
+                  <div class="card-icon">
+                    <img
+                      src="./assets/images/icon-1.png"
+                      width="71"
+                      height="71"
+                      loading="lazy"
+                      alt="icon"
+                    />
+                  </div>
+
+                  <div>
+                    <h3 class="headline-sm card-title">Plasma</h3>
+
+                    <p class="card-text">Liquid component of blood</p>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="listing-card" data-reveal="bottom">
+                  <div class="card-icon">
+                    <img
+                      src="./assets/images/icon-2.png"
+                      width="71"
+                      height="71"
+                      loading="lazy"
+                      alt="icon"
+                    />
+                  </div>
+
+                  <div>
+                    <h3 class="headline-sm card-title">Hemoglobin</h3>
+
+                    <p class="card-text">Oxygen carrying protein</p>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="listing-card" data-reveal="bottom">
+                  <div class="card-icon">
+                    <img
+                      src="./assets/images/icon-4.png"
+                      width="71"
+                      height="71"
+                      loading="lazy"
+                      alt="icon"
+                    />
+                  </div>
+
+                  <div>
+                    <h3 class="headline-sm card-title">Red Blood Cells</h3>
+
+                    <p class="card-text">Erythrocytes or RBCs</p>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="listing-card" data-reveal="bottom">
+                  <div class="card-icon">
+                    <img
+                      src="./assets/images/icon-5.png"
+                      width="71"
+                      height="71"
+                      loading="lazy"
+                      alt="icon"
+                    />
+                  </div>
+
+                  <div>
+                    <h3 class="headline-sm card-title">White Blood Cells</h3>
+
+                    <p class="card-text">Leukocytes or WBCs</p>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="listing-card" data-reveal="bottom">
+                  <div class="card-icon">
+                    <img
+                      src="./assets/images/icon-6.png"
+                      width="71"
+                      height="71"
+                      loading="lazy"
+                      alt="icon"
+                    />
+                  </div>
+
+                  <div>
+                    <h3 class="headline-sm card-title">Platelets</h3>
+
+                    <p class="card-text">Thrombocytes for coagulation</p>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="listing-card" data-reveal="bottom">
+                  <div class="card-icon">
+                    <img
+                      src="./assets/images/icon-7.png"
+                      width="71"
+                      height="71"
+                      loading="lazy"
+                      alt="icon"
+                    />
+                  </div>
+
+                  <div>
+                    <h3 class="headline-sm card-title">Complete Blood Count</h3>
+
+                    <p class="card-text">CBC</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 
+      - #BLOG
+    -->
+
+        <section class="section blog" aria-labelledby="blog-label">
+          <div class="container">
+            <p
+              class="section-subtitle title-lg text-center"
+              id="blog-label"
+              data-reveal="bottom"
+            >
+              News & Article
+            </p>
+
+            <h2
+              class="section-title headline-md text-center"
+              data-reveal="bottom"
+            >
+              Latest Articles
+            </h2>
+
+            <ul class="grid-list">
+              <li>
+                <div
+                  class="blog-card has-before has-after"
+                  data-reveal="bottom"
+                >
+                  <div class="meta-wrapper">
+                    <div class="card-meta">
+                      <ion-icon name="person-outline"></ion-icon>
+
+                      <span class="span">By Admin</span>
+                    </div>
+
+                    <div class="card-meta">
+                      <ion-icon name="folder-outline"></ion-icon>
+
+                      <span class="span">Specialist</span>
+                    </div>
+                  </div>
+
+                  <h3 class="headline-sm card-title">
+                    Revolutionizing Blood Banking: The Role of Technology in
+                    Ensuring Safety and Efficiency
+                  </h3>
+
+                  <time class="title-sm date" datetime="2022-01-28"
+                    >22 April, 2024</time
+                  >
+
+                  <p class="card-text">
+                    This article would explore the impact of technology,
+                    particularly blood bank management systems, in modernizing
+                    the blood banking industry.
+                  </p>
+
+                  <a href="#" class="btn-text title-lg">Read More</a>
+                </div>
+              </li>
+
+              <li>
+                <div
+                  class="blog-card has-before has-after"
+                  data-reveal="bottom"
+                >
+                  <div class="meta-wrapper">
+                    <div class="card-meta">
+                      <ion-icon name="person-outline"></ion-icon>
+
+                      <span class="span">By Admin</span>
+                    </div>
+
+                    <div class="card-meta">
+                      <ion-icon name="folder-outline"></ion-icon>
+
+                      <span class="span">Specialist</span>
+                    </div>
+                  </div>
+
+                  <h3 class="headline-sm card-title">
+                    Blockchain and Blood: Leveraging Distributed Ledger
+                    Technology for Secure Blood Management
+                  </h3>
+
+                  <time class="title-sm date" datetime="2022-01-28"
+                    >22 April, 2024</time
+                  >
+
+                  <p class="card-text">
+                    This article would delve into the potential of blockchain
+                    technology in revolutionizing blood bank management.
+                  </p>
+
+                  <a href="#" class="btn-text title-lg">Read More</a>
+                </div>
+              </li>
+
+              <li>
+                <div
+                  class="blog-card has-before has-after"
+                  data-reveal="bottom"
+                >
+                  <div class="meta-wrapper">
+                    <div class="card-meta">
+                      <ion-icon name="person-outline"></ion-icon>
+
+                      <span class="span">By Admin</span>
+                    </div>
+
+                    <div class="card-meta">
+                      <ion-icon name="folder-outline"></ion-icon>
+
+                      <span class="span">Specialist</span>
+                    </div>
+                  </div>
+
+                  <h3 class="headline-sm card-title">
+                    Navigating Regulatory Compliance: How Blood Bank Management
+                    Systems Ensure Adherence to Standards
+                  </h3>
+
+                  <time class="title-sm date" datetime="2022-01-28"
+                    >22 April, 2024</time
+                  >
+
+                  <p class="card-text">
+                    This article would explore the complex landscape of
+                    regulatory compliance in blood banking and its role in
+                    facilitating adherence to standards.
+                  </p>
+
+                  <a href="#" class="btn-text title-lg">Read More</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <!-- 
+  - #FOOTER
+-->
+
+    <footer
+      class="footer"
+      style="background-image: url('./assets/images/footer-bg.png')"
+    >
+      <div class="container">
+        <div class="section footer-top">
+          <div class="footer-brand" data-reveal="bottom">
+            <a href="#" class="logo">
+              <img
+                src="./assets/images/logo.svg"
+                width="136"
+                height="46"
+                loading="lazy"
+                alt="Doclab home"
+              />
+            </a>
+
+            <ul class="contact-list has-after">
+              <li class="contact-item">
+                <div class="item-icon">
+                  <ion-icon name="mail-open-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <p>
+                    Main Email :
+                    <a href="mailto:contact@website.com" class="contact-link"
+                      >contact@&shy;website.com</a
+                    >
+                  </p>
+
+                  <p>
+                    Inquiries :
+                    <a href="mailto:Info@mail.com" class="contact-link"
+                      >Info@mail.com</a
+                    >
+                  </p>
+                </div>
+              </li>
+
+              <li class="contact-item">
+                <div class="item-icon">
+                  <ion-icon name="call-outline"></ion-icon>
+                </div>
+
+                <div>
+                  <p>
+                    Office Telephone :
+                    <a href="tel:0029129102320" class="contact-link"
+                      >0029129102320</a
+                    >
+                  </p>
+
+                  <p>
+                    Mobile :
+                    <a href="tel:000232439493" class="contact-link"
+                      >000 2324 39493</a
+                    >
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-list" data-reveal="bottom">
+            <p class="headline-sm footer-list-title">About Us</p>
+
+            <p class="text">
+              DocLab - Blockchain Based Blood Bank Management System
+            </p>
+
+            <address class="address">
+              <ion-icon name="map-outline"></ion-icon>
+
+              <span class="text"> Xavier Institute Of Engineering. </span>
+            </address>
+          </div>
+
+          <ul class="footer-list" data-reveal="bottom">
+            <li>
+              <p class="headline-sm footer-list-title">Services</p>
+            </li>
+
+            <li>
+              <a href="#" class="text footer-link">Conditions</a>
+            </li>
+
+            <li>
+              <a href="#" class="text footer-link">Listing</a>
+            </li>
+
+            <li>
+              <a href="#" class="text footer-link">How It Works</a>
+            </li>
+
+            <li>
+              <a href="#" class="text footer-link">What We Offer</a>
+            </li>
+
+            <li>
+              <a href="#" class="text footer-link">Latest News</a>
+            </li>
+
+            <li>
+              <a href="#" class="text footer-link">Contact Us</a>
+            </li>
+          </ul>
+
+          <ul class="footer-list" data-reveal="bottom">
+            <li>
+              <p class="headline-sm footer-list-title">Useful Links</p>
+            </li>
+
+            <li>
+              <a href="#" class="text footer-link">Conditions</a>
+            </li>
+
+            <li>
+              <a href="#" class="text footer-link">Terms of Use</a>
+            </li>
+
+            <li>
+              <a href="#" class="text footer-link">Our Services</a>
+            </li>
+
+            <li>
+              <a href="#" class="text footer-link">Join as a Doctor</a>
+            </li>
+
+            <li>
+              <a href="#" class="text footer-link">New Guests List</a>
+            </li>
+
+            <li>
+              <a href="#" class="text footer-link">The Team List</a>
+            </li>
+          </ul>
+
+          <div class="footer-list" data-reveal="bottom">
+            <p class="headline-sm footer-list-title">Subscribe</p>
+
+            <form action="" class="footer-form">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                class="input-field title-lg"
+              />
+
+              <button type="submit" class="btn has-before title-md">
+                Subscribe
+              </button>
+            </form>
+
+            <p class="text">
+              Get the latest updates via email. Any time you may unsubscribe
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="text copyright">
+            &copy; Doclab 2024 | All Rights Reserved by Group - 9
+          </p>
+
+          <ul class="social-list">
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-google"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-pinterest"></ion-icon>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 
+  - #BACK TO TOP
+-->
+
+    <a
+      href="#top"
+      class="back-top-btn"
+      aria-label="back to top"
+      data-back-top-btn
+    >
+      <ion-icon name="chevron-up"></ion-icon>
+    </a>
 
     <script src="app.js"></script>
-</body>
+
+    <!-- 
+    - custom js link
+  -->
+    <script src="./assets/js/script.js"></script>
+
+    <!-- 
+  - ionicon link
+-->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>

@@ -1,125 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blood Bank Management System - Patient Dashboard</title>
-
+    <link rel="stylesheet" href="./assets/css/index.css" />
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 20px;
-            background-image: url('imgs/life.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            backdrop-filter: blur(20px);
-        }
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 20px;
+        /* background-image: url("imgs/life.jpg"); */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /* backdrop-filter: blur(20px); */
+      }
 
-        #header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+      #header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
 
-        #container {
-            max-width: 500px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+      #container {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
 
-        h1 {
-            color: #b71c1c;
-            text-transform: uppercase;
-        }
+      h1 {
+        color: #b71c1c;
+        text-transform: uppercase;
+      }
 
-        h2.blood-requests {
-            color: #1a237e;
-        }
+      h2.blood-requests {
+        color: var(--midnight-green);
+      }
 
-        h2.responses {
-            color: #004d40;
-        }
+      h2.responses {
+        color: var(--verdigris);
+      }
 
-        ul {
-            list-style: none;
-            padding: 10px;
-            margin: 0;
-        }
+      ul {
+        list-style: none;
+        padding: 10px;
+        margin: 0;
+      }
 
-        li {
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+      li {
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
 
-        #patientActions {
-            text-align: center;
-            margin-top: 20px;
-        }
+      #patientActions {
+        text-align: center;
+        margin-top: 20px;
+      }
 
-     #patientActions {
-            text-align: center;
-            margin-top: 20px;
-        }
+      #patientActions {
+        text-align: center;
+        margin-top: 20px;
+      }
 
-        button {
-            background-color: #4caf50;
-            color: white;
-            padding: 10px 15px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 4px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 10px;
-        }
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        margin-top: 10px;
+      }
 
-        button:hover,
-        button:active {
-            background-color: #a0456f;
-            transform: scale(1.05);
-        }
+      button:hover,
+      button:active {
+        background-color: #a0456f;
+        transform: scale(1.05);
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body
+    class="section hero"
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 5px;
+      background-image: url('./assets/images/hero-bg.png');
+    "
+  >
     <div id="header">
-        <h1>Welcome, Patient!</h1>
+      <h1 style="color: white" class="headline-md hero-title">
+        Welcome, Patient!
+      </h1>
     </div>
 
     <div id="container">
-        <div id="blood-requests-list-for-patient">
-            <h2 class="blood-requests">Blood Requests</h2>
-            <ul id="bloodRequestsListPatient"></ul>
-        </div>
+      <div id="blood-requests-list-for-patient">
+        <h2 class="blood-requests hero-title" style="margin-left: 135px">
+          Blood Requests
+        </h2>
+        <ul id="bloodRequestsListPatient"></ul>
+      </div>
 
-        <div id="patientDashboard">
-            <h2 class="responses">Responses to Blood Donation Requests</h2>
-            <ul></ul>
-        </div>
+      <div id="patientDashboard">
+        <h2 class="responses">Responses to Blood Donation Requests</h2>
+        <ul></ul>
+      </div>
     </div>
 
     <div id="patientActions">
-        <h2>Press the Button to Request Blood</h2>
-        <button onclick="requestBlood()">Request Blood</button>
+      <h2 style="color: white" class="headline-sm hero-title">
+        Press the Button to Request Blood
+      </h2>
+      <button
+        id="requestButton"
+        class="btn has-before title-lg"
+        style="
+          background-color: var(--verdigris);
+          justify-content: center;
+          margin-left: 55px;
+        "
+      >
+        Request Blood
+      </button>
     </div>
 
     <script>
-        // Call the function when the window loads for patient_dashboard
-        window.onload = () => {
-            displayBloodRequests('bloodRequestsListPatient');
-            displayPatientResponses();
-        };
+      // Call the function when the window loads for patient_dashboard
+      window.onload = () => {
+        displayBloodRequests("bloodRequestsListPatient");
+        displayPatientResponses();
+
+        // Function to save user data to local storage with a specific prefix
+        function saveUserData(userType, key, value) {
+          const prefixedKey = userType + "_" + key; // Prefix key with user type
+          localStorage.setItem(prefixedKey, value);
+        }
+
+        // Function to handle button click event and open popup for donation details
+        document
+          .getElementById("requestButton")
+          .addEventListener("click", function () {
+            // Open a window popup with input fields for donation details
+            const bloodType = prompt("Enter blood type (A, B, AB, O):");
+            const requestAmount = prompt("Enter required amount (in ml):");
+            const requestDate = prompt("Enter request date (YYYY-MM-DD):");
+
+            // Check if input is not null and save to local storage
+            if (
+              requestDate !== null &&
+              requestAmount !== null &&
+              bloodType !== null
+            ) {
+              saveUserData("patient", "bloodType", bloodType);
+              saveUserData("patient", "requestAmount", requestAmount);
+              saveUserData("patient", "requestDate", requestDate);
+
+              alert("Request details saved successfully!");
+            }
+          });
+      };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
     <script src="app.js"></script>
-</body>
-
+  </body>
 </html>
