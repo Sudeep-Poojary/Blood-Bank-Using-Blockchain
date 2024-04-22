@@ -1365,30 +1365,30 @@ function displayStoredDonationDetails() {
 }
 
 // Function to request blood
-async function requestBlood() {
-  try {
-    const patientAddress = getCurrentUserAddress();
+// async function requestBlood() {
+//   try {
+//     const patientAddress = getCurrentUserAddress();
 
-    // Check if the patient address is available
-    if (!patientAddress) {
-      console.error("Patient address not available");
-      return;
-    }
+//     // Check if the patient address is available
+//     if (!patientAddress) {
+//       console.error("Patient address not available");
+//       return;
+//     }
 
-    // Prompt the user for the blood type and amount
-    const bloodType = prompt("Enter blood type (A, B, AB, O):");
-    const amount = parseInt(prompt("Enter the amount of blood requested:"));
+//     // Prompt the user for the blood type and amount
+//     const bloodType = prompt("Enter blood type (A, B, AB, O):");
+//     const amount = parseInt(prompt("Enter the amount of blood requested:"));
 
-    // Call the smart contract function for blood request with specified blood type and amount
-    await bloodBankContract.methods
-      .requestBlood(bloodType, amount)
-      .send({ from: patientAddress });
+//     // Call the smart contract function for blood request with specified blood type and amount
+//     await bloodBankContract.methods
+//       .requestBlood(bloodType, amount)
+//       .send({ from: patientAddress });
 
-    alert("Blood Request Sent");
-  } catch (error) {
-    console.error("Error during blood request:", error.message);
-  }
-}
+//     alert("Blood Request Sent");
+//   } catch (error) {
+//     console.error("Error during blood request:", error.message);
+//   }
+// }
 
 // Function to display blood donation requests
 async function displayBloodRequests(targetElementId) {
